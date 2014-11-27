@@ -18,6 +18,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -90,44 +91,56 @@ public class MainActivity extends ActionBarActivity {
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		Log.i(className, "onActivityResult - Start");
-		Toast.makeText(context, "req-"+requestCode+"res-"+resultCode, Toast.LENGTH_SHORT).show();
-		Log.i(className, "Request code : " + requestCode + ", Result code : "
+		Log.d(className, "onActivityResult - Start");
+//		Toast.makeText(context, "req-"+requestCode+"res-"+resultCode, Toast.LENGTH_SHORT).show();
+		Log.d(className, "Request code : " + requestCode + ", Result code : "
 				+ resultCode + ", package : " + (data != null ? data.getPackage() : "null"));
+		/*super.onActivityResult(requestCode, resultCode, data);
+	      Bitmap bp = (Bitmap) data.getExtras().get("data");
+	      imgFavorite.setImageBitmap(bp);*/
+	      
 		try{
 			//Image is captured and selected, confirm to attach more.
 			if(requestCode == REQUEST_FOR_IMAGE_CAPTURE){
-				Toast.makeText(context, "requestcode"+requestCode,Toast.LENGTH_SHORT).show();
+//				Toast.makeText(context, "requestcode"+requestCode,Toast.LENGTH_SHORT).show();
 				if(resultCode == RESULT_OK) {
-					Toast.makeText(context, "resultCode"+resultCode,Toast.LENGTH_SHORT).show();
+//					Toast.makeText(context, "resultCode"+resultCode,Toast.LENGTH_SHORT).show();
 					attachMore();
 				}
 				//Back button is pressed on Camera
 				//delete images from ATTACH_TEMP_LOCATION 
 				else if((resultCode != Activity.RESULT_OK) || (resultCode == Activity.RESULT_CANCELED)){
 					Log.d(className, "X button Pressed");
-					Log.i(className, "Back Button Pressed - Delete files and show the camera.");
+					Log.d(className, "Back Button Pressed - Delete files and show the camera.");
 					deleteFile(attachmentsDirectory);
 					files = new ArrayList<Uri>();
 					Log.d(className, "Deleted.");
-					captureImage();
+//					captureImage();
+					finish();
 				} 
 			}else if (requestCode == RETURN_FROM_MAIL){
+				Log.d(className, "Request Code : " + requestCode);
 				if(resultCode == Activity.RESULT_OK){
-					Toast.makeText(context, "Gmail-OK"+resultCode, Toast.LENGTH_SHORT).show();
+					Log.d(className, "resultCode : result OK");
+//					Toast.makeText(context, "Gmail-OK"+resultCode, Toast.LENGTH_SHORT).show();
+					Log.d(className, "Gmail-OK"+resultCode);
 				}else if (resultCode == Activity.RESULT_CANCELED){
-					deleteFile(attachmentsDirectory);
-					files = new ArrayList<Uri>();
-					Toast.makeText(context, "Gmail-Cancelled"+resultCode, Toast.LENGTH_SHORT).show();
+					Log.d(className, "Gmail-Cancelled"+resultCode);
+//					deleteFile(attachmentsDirectory);
+//					files = new ArrayList<Uri>();
+//					Toast.makeText(context, "Gmail-Cancelled"+resultCode, Toast.LENGTH_SHORT).show();
 				}else {
-					Toast.makeText(context, "Gmail-New Code"+resultCode, Toast.LENGTH_SHORT).show();
+//					Toast.makeText(context, "Gmail-New Code"+resultCode, Toast.LENGTH_SHORT).show();
+					Log.d(className, "Gmail-New Code"+resultCode);
 				}
-				deleteFile(attachmentsDirectory);
-				Log.d(className, "Deleted.");
+//				deleteFile(attachmentsDirectory);
+//				Log.d(className, "Deleted.");
 				captureImage();
 			}else {
-				Toast.makeText(context, "final else", Toast.LENGTH_SHORT).show();
-				Toast.makeText(context, "req-"+requestCode+"res-"+resultCode, Toast.LENGTH_SHORT).show();
+//				Toast.makeText(context, "final else", Toast.LENGTH_SHORT).show();
+//				Toast.makeText(context, "req-"+requestCode+"res-"+resultCode, Toast.LENGTH_SHORT).show();
+				Log.d(className, "req-"+requestCode+"res-"+resultCode);
+				Log.d(className, "final else");
 				exitCamera();
 			}
 		} catch(IOException ioe){
@@ -138,7 +151,7 @@ public class MainActivity extends ActionBarActivity {
     }
 	
 	void attachMore(){
-		Log.i(className, "Attach More Files - Start");
+		Log.d(className, "Attach More Files - Start");
 		AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setTitle("Attach More...");
         alertDialog.setMessage("Attach another ?");
@@ -160,7 +173,7 @@ public class MainActivity extends ActionBarActivity {
         });
  
         alertDialog.show();
-        Log.i(className, "Attach More Files - End");
+        Log.d(className, "Attach More Files - End");
 	}
 	
 	@Override
@@ -169,6 +182,13 @@ public class MainActivity extends ActionBarActivity {
 		super.onBackPressed();
 		finish();
 		System.exit(0);
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		Log.d(className, "keyCode : " + keyCode);
+		Log.d(className, "event : " + event.toString());
+		return super.onKeyDown(keyCode, event);
 	}
 	
 	public void exitCamera(){
@@ -207,7 +227,7 @@ public class MainActivity extends ActionBarActivity {
 //                options.inSampleSize = 10; //Downsample 10x
             Bitmap userImage = BitmapFactory.decodeStream(in, null, options);
             imageView.setImageBitmap(userImage);*/
-            
+            Log.d(className, "Start - Compose Mail");
 			if(files.size() > 1){
 				mailIntent = new Intent(android.content.Intent.ACTION_SEND_MULTIPLE);
 			}else if (files.size() == 1){
@@ -231,10 +251,11 @@ public class MainActivity extends ActionBarActivity {
             		Toast.makeText(MainActivity.this, "files null", Toast.LENGTH_SHORT).show();
             	}
             }
+            //TODO : should call default email client for older versions.
             mailIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
             startActivityForResult(mailIntent, RETURN_FROM_MAIL);
-            setResult(RESULT_OK, mailIntent);
-           
+//            setResult(RESULT_OK, mailIntent);
+            Log.d(className, "End - Compose Mail");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -248,7 +269,7 @@ public class MainActivity extends ActionBarActivity {
 	static boolean createDirectories(){
 		boolean isCreated = false;
 		try{
-			Log.i(className, "Create Directory - Start");
+			Log.d(className, "Create Directory - Start");
 			
 			Log.d(className, android.os.Environment.getExternalStorageDirectory().toString());
 			File f = new File("/mnt/sdcard/picattach/");
@@ -269,7 +290,7 @@ public class MainActivity extends ActionBarActivity {
 			Log.d(className, outboxDirectory.getAbsolutePath());
 			outboxDirectory.mkdir();
 			
-			Log.i(className, "Create Directory - End");
+			Log.d(className, "Create Directory - End");
 		}catch (Exception e) {
             e.printStackTrace();
             isCreated = false;
