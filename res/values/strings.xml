@@ -8,5 +8,9 @@
     <string name="take_pic">Take a picture</string>
     <string name="content">My Content</string>
     <string name="attachment">Picture Attachment</string>
+    <string name="to">To</string>
+    <string name="from">From</string>
+    <string name="subject">Subject</string>
+    <string name="body">Compose email</string>
 
 </resources>

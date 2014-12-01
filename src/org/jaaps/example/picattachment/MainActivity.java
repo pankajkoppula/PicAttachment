@@ -12,9 +12,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -60,12 +60,34 @@ public class MainActivity extends ActionBarActivity {
 		
 		imageView = (ImageView)findViewById(R.id.image);
 		
-		if(createDirectories()){
-			captureImage();
-		}else{
-			Log.e(className, "Cannot create directories.");
-		}
+		if (!isDeviceSupportCamera()) {
+            Toast.makeText(getApplicationContext(),
+                    "Sorry! Your device doesn't support camera",
+                    Toast.LENGTH_LONG).show();
+            // will close the app if the device does't have camera
+            finish();
+        }else{
+        	if(createDirectories()){
+        		captureImage();
+        	}else{
+        		Log.e(className, "Cannot create directories.");
+        	}
+        }
 	}
+	
+	/**
+     * Checking device has camera hardware or not
+     * */
+    private boolean isDeviceSupportCamera() {
+        if (getApplicationContext().getPackageManager().hasSystemFeature(
+                PackageManager.FEATURE_CAMERA)) {
+            // this device has a camera
+            return true;
+        } else {
+            // no camera on this device
+            return false;
+        }
+    }
 	
 	/**
 	 * Create file and capture image.
@@ -168,6 +190,10 @@ public class MainActivity extends ActionBarActivity {
             	}else {
             		//TODO:call database.
             		Toast.makeText(context, "No Internet, Message Saved", Toast.LENGTH_SHORT).show();
+            		 // Send intent to Compose View
+                    Intent i = 
+                    new Intent(getApplicationContext(), ComposeActivity.class);
+                    startActivity(i);
             	}
             }
         });
