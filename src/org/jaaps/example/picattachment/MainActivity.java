@@ -193,6 +193,7 @@ public class MainActivity extends ActionBarActivity {
             		 // Send intent to Compose View
                     Intent i = 
                     new Intent(getApplicationContext(), ComposeActivity.class);
+                    i.putExtra("attachmentDirectory", attachmentsDirectory.getAbsolutePath());
                     startActivity(i);
             	}
             }

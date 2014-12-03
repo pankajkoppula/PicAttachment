@@ -1634,6 +1634,7 @@ containing a value of this type.
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020031;
         public static final int abc_textfield_search_material=0x7f020032;
         public static final int ic_launcher=0x7f020033;
+        public static final int table_row_border=0x7f020034;
     }
     public static final class id {
         public static final int action_bar=0x7f050033;
@@ -1649,7 +1650,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f050030;
         public static final int action_mode_bar_stub=0x7f05002f;
         public static final int action_mode_close_button=0x7f050022;
-        public static final int action_settings=0x7f050048;
+        public static final int action_settings=0x7f05004e;
         public static final int activity_chooser_view_content=0x7f050023;
         public static final int always=0x7f05000d;
         public static final int beginning=0x7f050012;
@@ -1670,13 +1671,19 @@ containing a value of this type.
         public static final int icon=0x7f050028;
         public static final int ifRoom=0x7f05000c;
         public static final int image=0x7f050025;
-        public static final int imgLogo=0x7f050047;
-        public static final int inputBody=0x7f050046;
+        public static final int imgLogo=0x7f05004d;
+        public static final int inputBcc=0x7f05004a;
+        public static final int inputCc=0x7f050047;
         public static final int inputFrom=0x7f050042;
-        public static final int inputSubject=0x7f050045;
+        public static final int inputSubject=0x7f05004b;
         public static final int inputTo=0x7f050044;
+        public static final int labelBcc=0x7f050049;
+        public static final int labelCc=0x7f050046;
         public static final int labelFrom=0x7f050041;
         public static final int labelTo=0x7f050043;
+        public static final int layoutBcc=0x7f050048;
+        public static final int layoutBody=0x7f05004c;
+        public static final int layoutCc=0x7f050045;
         public static final int listMode=0x7f050002;
         public static final int list_item=0x7f050027;
         public static final int middle=0x7f050013;
@@ -1824,12 +1831,14 @@ containing a value of this type.
         public static final int action_settings=0x7f0a0011;
         public static final int app_name=0x7f0a000f;
         public static final int attachment=0x7f0a0015;
-        public static final int body=0x7f0a0019;
+        public static final int bcc=0x7f0a0018;
+        public static final int body=0x7f0a001b;
         public static final int button_click=0x7f0a0012;
+        public static final int cc=0x7f0a0017;
         public static final int content=0x7f0a0014;
-        public static final int from=0x7f0a0017;
+        public static final int from=0x7f0a0019;
         public static final int hello_world=0x7f0a0010;
-        public static final int subject=0x7f0a0018;
+        public static final int subject=0x7f0a001a;
         public static final int take_pic=0x7f0a0013;
         public static final int to=0x7f0a0016;
     }

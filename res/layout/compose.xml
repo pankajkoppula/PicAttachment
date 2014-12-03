@@ -3,9 +3,7 @@
     android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:orientation="vertical" >
-    <!--
-    	From part of the Compose Mail 
-     -->
+    <!-- From part of the Compose Mail -->
     <LinearLayout
         android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
@@ -39,9 +37,7 @@
 	    android:layout_height="1dp"
 	    android:background="@android:color/darker_gray"/>
     
-    <!--
-    	To part of the Compose Mail 
-     -->
+    <!-- To part of the Compose Mail -->
      
     <LinearLayout
         android:layout_width="wrap_content"
@@ -52,8 +48,8 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_marginLeft="15dp"
-		        android:layout_marginTop="15dp"
-		        android:layout_marginBottom="15dp"
+		        android:layout_marginTop="13dp"
+		        android:layout_marginBottom="13dp"
 		        android:textSize="18sp"
 		        android:text="@string/to" >
 		    </TextView>
@@ -63,8 +59,8 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_marginLeft="15dp"
-		        android:layout_marginTop="15dp"
-		        android:layout_marginBottom="15dp"
+		        android:layout_marginTop="13dp"
+		        android:layout_marginBottom="13dp"
 		        android:background="#00000000"
 		        android:inputType="textEmailAddress"
 		        android:ems="15" >
@@ -76,9 +72,80 @@
 	    android:layout_height="1dp"
 	    android:background="@android:color/darker_gray"/>
     
-    <!--
-    	Subject part of the Compose Mail 
-     -->
+    <!--  Cc part of the Compose Mail -->
+     
+    <LinearLayout android:id="@+id/layoutCc"
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+		    
+		    <TextView 
+		        android:id="@+id/labelCc"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="15dp"
+		        android:layout_marginTop="13dp"
+		        android:layout_marginBottom="13dp"
+		        android:textSize="15sp"
+		        android:text="@string/cc" >
+		    </TextView>
+		    <EditText
+		        android:id="@+id/inputCc"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="15dp"
+		        android:layout_marginTop="13dp"
+		        android:layout_marginBottom="13dp"
+		        android:background="#00000000"
+		        android:inputType="textEmailAddress"
+		        android:visibility="invisible"
+		        android:ems="15" >
+		    </EditText>
+    </LinearLayout>
+    
+    <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+	    android:background="@android:color/darker_gray"/>
+    
+     <!-- Bcc part of the Compose Mail -->
+     
+    <LinearLayout android:id="@+id/layoutBcc"
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+		
+		    <TextView 
+		        android:id="@+id/labelBcc"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="15dp"
+		        android:layout_marginTop="13dp"
+		        android:layout_marginBottom="13dp"
+		        android:textSize="15sp"
+		        android:text="@string/bcc" >
+	        </TextView>
+	        
+		    <EditText
+		        android:id="@+id/inputBcc"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="15dp"
+		        android:layout_marginTop="13dp"
+		        android:layout_marginBottom="13dp"
+		        android:background="#00000000"
+		        android:inputType="textEmailAddress"
+		        android:visibility="invisible"
+		        android:ems="15" >
+		    </EditText>
+    </LinearLayout>
+    
+    <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+	    android:background="@android:color/darker_gray"/>
+    
+    <!-- Subject part of the Compose Mail -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,8 +156,8 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="13dp"
             android:hint="@string/subject"
             android:textSize="18sp"
             android:background="#00000000"
@@ -103,28 +170,15 @@
 	    android:layout_height="1dp"
 	    android:background="@android:color/darker_gray"/>
 
-    <!--
-    	Body part of the Compose Mail 
+    <!-- Body part of the Compose Mail,
+    	Views are generated dynamically
      -->
      
-    <LinearLayout
+    <LinearLayout android:id="@+id/layoutBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/inputBody"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:textSize="18sp"
-            android:background="#00000000"
-            android:lines="2"
-            android:hint="@string/body"
-            android:inputType="textMultiLine" >
-        </EditText>
     </LinearLayout>
     
 </LinearLayout>

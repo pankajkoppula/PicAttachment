@@ -9,8 +9,10 @@
     <string name="content">My Content</string>
     <string name="attachment">Picture Attachment</string>
     <string name="to">To</string>
+    <string name="cc">Cc</string>
+    <string name="bcc">Bcc</string>
     <string name="from">From</string>
-    <string name="subject">Subject</string>
-    <string name="body">Compose email</string>
+    <string name="subject">your subject here..  </string>
+    <string name="body">your content here.. </string>
 
 </resources>
